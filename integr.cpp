@@ -48,11 +48,12 @@ double GaussMethod(double a, double b, int n)                    //метод Гаусса
 	return s * h;
 }
 
-double MonteKarloMethod(double a, double b, int n, int N)                    //метод Монте-Карло
+double MonteKarloMethod(double a, double b, int n)                    //метод Монте-Карло
 {
 	double min, max, f, h;
 	min = 0;                     //поиск максимума и минимума
 	max = 0;
+	int N = 1000000 * (int)(b - a);
 	h = (b - a) / N;                       
 	for (int i = 0 ; i < N ; i++)
 	{
@@ -104,7 +105,7 @@ int main(void)
 	printf("%.13lf TrapezeMethod\n", TrapezeMethod(0. , x, n));
 	printf("%.13lf ParabolMethod\n", ParabolMethod(0. , x, n));
 	printf("%.13lf GaussMethod\n", GaussMethod(0. , x, n));
-	printf("%.13lf MonteKarloMethod\n", MonteKarloMethod(0. , x, n, 1000000));
+	printf("%.13lf MonteKarloMethod\n", MonteKarloMethod(0. , x, n));
 	system("pause");
 	return 0;
 }
