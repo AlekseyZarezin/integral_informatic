@@ -3,7 +3,7 @@
 #include<string.h>
 #include<math.h>
 #include<time.h>
-#define CASH 3000
+#define CASH 3
 
 double test(double x)
 {
