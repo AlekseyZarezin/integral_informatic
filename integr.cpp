@@ -93,24 +93,7 @@ double MonteKarloMethod(double a, double b, int n, int N)                    //м
 
 int main(void)
 {
-	int N, j=0, i=0, l=CASH, n;
-	char c, *m;   
-	m = (char*)malloc(CASH*sizeof(char));                //ввод строки    
-	i=0;
-	//c=getchar();
-	c = '\n';
-	while (c!='\n')
-	{
-		m[i]=c;
-		i++;
-		c=getchar();
-		if (i+2==l)
-		{
-			l+=CASH;
-			m=(char*)realloc(m, l*sizeof(char));
-		}
-	}
-	m[i]='\0';                                           //ввод строки
+	int n;
 	
 	//printf("%s\n", m);
 	scanf("%d", &n);
@@ -123,6 +106,5 @@ int main(void)
 	printf("%lf GaussMethod\n", GaussMethod(0. , x, n));
 	printf("%lf MonteKarloMethod\n", MonteKarloMethod(0. , x, n, 1000000));
 	system("pause");
-	free(m);
 	return 0;
 }
