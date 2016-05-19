@@ -100,11 +100,11 @@ int main(void)
 	double x;
 	scanf("%lf", &x);
 	srand(time(NULL));
-	printf("%lf RectangleMethod\n", RectangleMethod(0. , x, n));
-	printf("%lf TrapezeMethod\n", TrapezeMethod(0. , x, n));
-	printf("%lf ParabolMethod\n", ParabolMethod(0. , x, n));
-	printf("%lf GaussMethod\n", GaussMethod(0. , x, n));
-	printf("%lf MonteKarloMethod\n", MonteKarloMethod(0. , x, n, 1000000));
+	printf("%.13lf RectangleMethod\n", RectangleMethod(0. , x, n));
+	printf("%.13lf TrapezeMethod\n", TrapezeMethod(0. , x, n));
+	printf("%.13lf ParabolMethod\n", ParabolMethod(0. , x, n));
+	printf("%.13lf GaussMethod\n", GaussMethod(0. , x, n));
+	printf("%.13lf MonteKarloMethod\n", MonteKarloMethod(0. , x, n, 1000000));
 	system("pause");
 	return 0;
 }
