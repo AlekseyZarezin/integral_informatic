@@ -3,7 +3,7 @@
 #include<string.h>
 #include<math.h>
 #include<time.h>
-#define CASH 30
+#define CASH 3000
 
 double test(double x)
 {
@@ -12,7 +12,7 @@ double test(double x)
 	return x*sin(x);
 }
 
-double RectangleMethod(double a, double b, int n)                //метод прямоугольников
+double RectangleMethod(double a, double b, int n)                //Г¬ГҐГІГ®Г¤ ГЇГ°ГїГ¬Г®ГіГЈГ®Г«ГјГ­ГЁГЄГ®Гў
 {
 	double s = 0, h = (b-a) / (double)n ;
 	for (int i = 0 ; i < n-1 ; i++)
@@ -21,7 +21,7 @@ double RectangleMethod(double a, double b, int n)                //метод прямоуг
 	return s * h;
 }
 
-double TrapezeMethod(double a, double b, int n)                 //метод трапеций
+double TrapezeMethod(double a, double b, int n)                 //Г¬ГҐГІГ®Г¤ ГІГ°Г ГЇГҐГ¶ГЁГ©
 {
 	double s = 0, h = (b-a) / (double)n ;
 	for (int i = 0 ; i < n-1 ; i++)
@@ -30,7 +30,7 @@ double TrapezeMethod(double a, double b, int n)                 //метод трапеций
 	return s * h;
 }
 
-double ParabolMethod(double a, double b, int n)                 //метод парабол
+double ParabolMethod(double a, double b, int n)                 //Г¬ГҐГІГ®Г¤ ГЇГ Г°Г ГЎГ®Г«
 {
 	double s = 0, h = (b-a) / (double)n ;
 	for (int i = 0 ; i < n-1 ; i++)
@@ -39,7 +39,7 @@ double ParabolMethod(double a, double b, int n)                 //метод парабол
 	return s * h / 6.0;
 }
 
-double GaussMethod(double a, double b, int n)                    //метод Гаусса
+double GaussMethod(double a, double b, int n)                    //Г¬ГҐГІГ®Г¤ ГѓГ ГіГ±Г±Г 
 {
 	double s = 0, h = (b-a) / (double)n ;
 	for (int i = 0 ; i < n-1 ; i++)
@@ -48,10 +48,10 @@ double GaussMethod(double a, double b, int n)                    //метод Гаусса
 	return s * h;
 }
 
-double MonteKarloMethod(double a, double b, int n, int N)                    //метод Монте-Карло
+double MonteKarloMethod(double a, double b, int n, int N)                    //Г¬ГҐГІГ®Г¤ ГЊГ®Г­ГІГҐ-ГЉГ Г°Г«Г®
 {
 	double min, max, f, h;
-	min = 0;                     //поиск максимума и минимума
+	min = 0;                     //ГЇГ®ГЁГ±ГЄ Г¬Г ГЄГ±ГЁГ¬ГіГ¬Г  ГЁ Г¬ГЁГ­ГЁГ¬ГіГ¬Г 
 	max = 0;
 	h = (b - a) / N;                       
 	for (int i = 0 ; i < N ; i++)
@@ -95,7 +95,7 @@ int main(void)
 {
 	int N, j=0, i=0, l=CASH, n;
 	char c, *m;   
-	m = (char*)malloc(CASH*sizeof(char));                //ввод строки    
+	m = (char*)malloc(CASH*sizeof(char));                //ГўГўГ®Г¤ Г±ГІГ°Г®ГЄГЁ    
 	i=0;
 	//c=getchar();
 	c = '\n';
@@ -110,7 +110,7 @@ int main(void)
 			m=(char*)realloc(m, l*sizeof(char));
 		}
 	}
-	m[i]='\0';                                           //ввод строки
+	m[i]='\0';                                           //ГўГўГ®Г¤ Г±ГІГ°Г®ГЄГЁ
 	
 	//printf("%s\n", m);
 	scanf("%d", &n);
