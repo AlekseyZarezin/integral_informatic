@@ -64,55 +64,19 @@ struct stechscob
 	}
 };
 
-struct node                            //создание дерева операций
+double funct(char *s, int n, double x)
 {
-	char f, ch, op, *str;
-	double z;
-	node * left, * right;
-};
-
-struct tree
-{
-    node * root;
-    void   init()
-    {
-        root = NULL;
-    }
-    void add(char *s,  int N, node ** n)                        //добавление элемента
-    {
-        if ((*n) == NULL)
-        {
-            node *n1=(node *)malloc(sizeof(node));
-            
-            n1->data=data;
-            n1->left=NULL;
-            n1->right=NULL;
-            (*n)=n1;
-        }
-        else
-        {
-        	if (data>=(*n)->data)
-        		add(data, &((*n)->right));
-        	else
-        		add(data, &((*n)->left));      
-        }     
-    }
-	void clean(node ** n)                                //очистка памяти
+	if (s[0]=='x')
 	{
-		if ((*n)!=NULL)
-		{
-			clean(&(*n)->left);
-			clean(&(*n)->right);
-			free(*n);
-			if ((*n)==root)
-				(*n)=NULL;
-		}
+		if (n==1)
+			return x;
+		//else
 	}
-};
+}
 
 int main(void)
 {
-	int N, j=0, i=0, l=CASH, n;
+	int j=0, i=0, l=CASH, n;
 	char c, *s;   
 	s = (char*)malloc(CASH*sizeof(char));                //ввод строки    
 	i=0;
@@ -130,6 +94,7 @@ int main(void)
 	}
 	s[i]='\0';	                                           
 	int length = i;	
+	printf("length %d\n", length);
 	
 	stechscob st;                              //проверка на корректность
     st.init();
@@ -170,14 +135,14 @@ int main(void)
 		i++;
 	}
 	free(s);
-	m[i]='\0';	                                           
-	length = i;
-	
-	
-	tree T;
-    T.init();
+	m[j]='\0';	                                           
+	length = j;
+		
+	double x=funct(m, length, 1.0);
     
 	printf("%s\n", m);
+	printf("length %d\n", length);
+	printf("%lf\n", x);
 	system("pause");
 	free(m);
 	return 0;
