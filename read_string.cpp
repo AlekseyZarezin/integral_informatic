@@ -10,7 +10,7 @@ struct node
     node * next;
 };
 
-struct stech
+struct stechscob
 {
     node * head;
     void   init(){head = NULL;}
@@ -38,7 +38,7 @@ struct stech
     void pop()
     {
         node *h=head;
-        head=(*head).next;
+        head=head->next;
         free(h);
     }
     int deep()
@@ -84,7 +84,7 @@ int main(void)
 	}
 	s[i]='\0';	                                           
 	int length = i;	
-	stech st;                              //проверка на корректность
+	stechscob st;                              //проверка на корректность
     st.init();
     char f=1;
 	for (int i=0; i<length; i++)
@@ -99,9 +99,9 @@ int main(void)
 	if (st.deep()>0)
 		f=0;
 	if (f)
-		printf("yes\n");
+		printf("correct\n");
 	else
-		printf("no\n");
+		printf("error\n");
 	st.clean();
 	
 	//printf("%s\n", s);
