@@ -4,15 +4,15 @@
 #include<math.h>
 #define CASH 30
 
-struct node
+struct node1                            //для проверки корректности скобок
 {
     char data;
-    node * next;
+    node1 * next;
 };
 
-struct stechscob
+struct stechscob                             
 {
-    node * head;
+    node1 * head;
     void   init(){head = NULL;}
     char push(char data)
     {        
@@ -28,7 +28,7 @@ struct stechscob
 		}
         else
 		{  
-			node *n=(node *)malloc(sizeof(node));  	
+			node1 *n=(node1 *)malloc(sizeof(node1));  	
         	n->data=data;
         	n->next=head;    
         	head = n; 
@@ -37,14 +37,14 @@ struct stechscob
     }
     void pop()
     {
-        node *h=head;
+        node1 *h=head;
         head=head->next;
         free(h);
     }
     int deep()
     {
         int i=0;
-        node *h=head;
+        node1 *h=head;
         while (h!=NULL)
         {
             i++;
@@ -56,11 +56,57 @@ struct stechscob
     {
     	while (deep()!=0)
     	{
-    		node *h=head;
+    		node1 *h=head;
         	head=head->next;
         	free(h);
 		}
 		head = NULL;
+	}
+};
+
+struct node                            //создание дерева операций
+{
+	char f, ch, op, *str;
+	double z;
+	node * left, * right;
+};
+
+struct tree
+{
+    node * root;
+    void   init()
+    {
+        root = NULL;
+    }
+    void add(char *s,  int N, node ** n)                        //добавление элемента
+    {
+        if ((*n) == NULL)
+        {
+            node *n1=(node *)malloc(sizeof(node));
+            
+            n1->data=data;
+            n1->left=NULL;
+            n1->right=NULL;
+            (*n)=n1;
+        }
+        else
+        {
+        	if (data>=(*n)->data)
+        		add(data, &((*n)->right));
+        	else
+        		add(data, &((*n)->left));      
+        }     
+    }
+	void clean(node ** n)                                //очистка памяти
+	{
+		if ((*n)!=NULL)
+		{
+			clean(&(*n)->left);
+			clean(&(*n)->right);
+			free(*n);
+			if ((*n)==root)
+				(*n)=NULL;
+		}
 	}
 };
 
@@ -84,6 +130,7 @@ int main(void)
 	}
 	s[i]='\0';	                                           
 	int length = i;	
+	
 	stechscob st;                              //проверка на корректность
     st.init();
     char f=1;
@@ -104,8 +151,34 @@ int main(void)
 		printf("error\n");
 	st.clean();
 	
-	//printf("%s\n", s);
-	system("pause");
+	i=0;                                           //удаление пробелов
+	j=0;
+	l=CASH;
+	char *m = (char*)malloc(CASH*sizeof(char)); 
+	while (s[i]!='\n')
+	{
+		if (s[i]!=' ')
+		{
+			m[j]=s[i];
+			j++;
+			if (j+2==l)
+			{
+				l+=CASH;
+				m=(char*)realloc(m, l*sizeof(char));
+			}	
+		}
+		i++;
+	}
 	free(s);
+	m[i]='\0';	                                           
+	length = i;
+	
+	
+	tree T;
+    T.init();
+    
+	printf("%s\n", m);
+	system("pause");
+	free(m);
 	return 0;
 }
