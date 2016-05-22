@@ -159,19 +159,19 @@ double funct(char *s, int n, double x)
 			switch(s[i])
 			{
 				case '+':
-					return funct(s+1, i-2, x) + funct(s+2, n-2, x);
+					return funct(s+1, i-2, x) + funct(s+i+1, n-i-1, x);
 					break;
 				case '-':
-					return funct(s+1, i-2, x) - funct(s+2, n-2, x);
+					return funct(s+1, i-2, x) - funct(s+i+1, n-i-1, x);
 					break;
 				case '*':
-					return funct(s+1, i-2, x) * funct(s+2, n-2, x);
+					return funct(s+1, i-2, x) * funct(s+i+1, n-i-1, x);
 					break;
 				case '/':
-					return funct(s+1, i-2, x) / funct(s+2, n-2, x);
+					return funct(s+1, i-2, x) / funct(s+i+1, n-i-1, x);
 					break;
 				case '^':
-					return pow(funct(s+1, i-2, x), funct(s+2, n-2, x));
+					return pow(funct(s+1, i-2, x), funct(s+i+1, n-i-1, x));
 					break;
 				default : 
 					return 1.0;
