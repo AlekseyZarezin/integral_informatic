@@ -64,7 +64,28 @@ struct stechscob
 	}
 };
 
-double funct(char *s, int n, double x)
+double f(double x, char s)                                    //считывание функции из строки              
+{
+	switch(s)
+			{
+				case 's':
+					return sin(x);
+					break;
+				case 'c':
+					return cos(x);
+					break;
+				case 'e':
+					return exp(x);
+					break;
+				case 'l':
+					return log(x);
+					break;
+				default : 
+					return 1.0;
+			}
+}
+
+double funct(char *s, int n, double x)                                                          //считывание формулы из строки
 {
 	if (s[0]=='x')                                                                                                //x
 	{
@@ -172,6 +193,46 @@ double funct(char *s, int n, double x)
 					break;
 				case '^':
 					return pow(funct(s+1, i-2, x), funct(s+i+1, n-i-1, x));
+					break;
+				default : 
+					return 1.0;
+			}
+		}
+	}
+	if ((s[0]=='s')||(s[0]=='c')||(s[0]=='e')||(s[0]=='l'))                                        //  функции
+	{
+		int j=1, i;
+		for (i=4;j!=0;i++)
+		{
+			if (s[i]=='(')
+			{
+				++j;
+			}
+			if (s[i]==')')
+			{
+				--j;
+			}
+		}
+		if (n==i)
+			return f(funct(s+4,n-5,x), s[0]);
+		else 
+		{
+			switch(s[i])
+			{
+				case '+':
+					return f(funct(s+4, i-5, x),s[0]) + funct(s+i+1, n-i-1, x);
+					break;
+				case '-':
+					return f(funct(s+4, i-5, x),s[0]) - funct(s+i+1, n-i-1, x);
+					break;
+				case '*':
+					return f(funct(s+4, i-5, x),s[0]) * funct(s+i+1, n-i-1, x);
+					break;
+				case '/':
+					return f(funct(s+4, i-5, x),s[0]) / funct(s+i+1, n-i-1, x);
+					break;
+				case '^':
+					return f(pow(funct(s+1, i-2, x), funct(s+i+1, n-i-1, x)),s[0]);
 					break;
 				default : 
 					return 1.0;
