@@ -89,9 +89,9 @@ double f(double x, char s)                                    //считывание функц
 			}
 }
 
-double funct(char *s, int n, double x)                                                          //считывание формулы из строки
+double funct(char *s, int n, double x)                                                  //считывание формулы из строки
 {
-	if (s[0]=='x')                                                                                                //x
+	if (s[0]=='x')                                                                                        //x
 	{
 		if (n==1)
 			return x;
@@ -432,20 +432,32 @@ int main(void)
 		}
 		m[j]='\0';	                                           
 		L=j;
-		str=m;			
+		str=m;	
+		FILE *f;
+		f=fopen("statistic.txt", "a");	
+		fprintf(f,"f(x) = %s\n", m);		
 		printf("split\n");
 		int n;	
 		scanf("%d", &n);
+		fprintf(f,"split %d\n", n);
 		printf("limits of integration\n");
-		double x, y;
+		double x, y, z;
 		scanf("%lf", &x);
 		scanf("%lf", &y);
-		printf("%.13lf RectangleMethod\n", RectangleMethod(x , y, n));
-		printf("%.13lf TrapezeMethod\n", TrapezeMethod(x , y, n));
-		printf("%.13lf ParabolMethod\n", ParabolMethod(x , y, n));
-		printf("%.13lf GaussMethod\n", GaussMethod(x , y, n));
-		printf("%.13lf MonteKarloMethod\n", MonteKarloMethod(x , y, n));
-		free(m);	
+		fprintf(f,"integrate from %lf to %lf\n", x, y);
+		printf("%.13lf RectangleMethod\n", z=RectangleMethod(x , y, n));
+		fprintf(f,"%.13lf RectangleMethod\n", z);	
+		printf("%.13lf TrapezeMethod\n", z=TrapezeMethod(x , y, n));
+		fprintf(f,"%.13lf RectangleMethod\n", z);
+		printf("%.13lf ParabolMethod\n", z=ParabolMethod(x , y, n));
+		fprintf(f,"%.13lf RectangleMethod\n", z);
+		printf("%.13lf GaussMethod\n", z=GaussMethod(x , y, n));
+		fprintf(f,"%.13lf RectangleMethod\n", z);
+		printf("%.13lf MonteKarloMethod\n", z=MonteKarloMethod(x , y, n));
+		fprintf(f,"%.13lf RectangleMethod\n", z);
+		fprintf(f,"\n");
+		free(m);
+		fclose(f);
 	}
 
 	free(s);
