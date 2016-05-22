@@ -191,42 +191,82 @@ double test(double x)
 
 double RectangleMethod(double a, double b, int n)                //метод прямоугольников
 {
+	int sign = 1;
+	if (b<a)
+	{
+		double c=a;
+		a=b;
+		b=c;
+		sign = -1;
+	}
 	double s = 0, h = (b-a) / (double)n ;
 	for (int i = 0 ; i < n-1 ; i++)
 		s += test(a + ((double)i + 0.5) * h);
 	s +=  test(b - h * 0.5);
-	return s * h;
+	return s * h * (double)sign;
 }
 
 double TrapezeMethod(double a, double b, int n)                 //метод трапеций
 {
+		int sign = 1;
+	if (b<a)
+	{
+		double c=a;
+		a=b;
+		b=c;
+		sign = -1;
+	}
 	double s = 0, h = (b-a) / (double)n ;
 	for (int i = 0 ; i < n-1 ; i++)
 		s += (test(a + (double)i * h) + test(a + ((double)i + 1.0) * h)) / 2.0;
 	s += (test(b - h) + test(b)) / 2.0;
-	return s * h;
+	return s * h * (double)sign;
 }
 
 double ParabolMethod(double a, double b, int n)                 //метод парабол
 {
+		int sign = 1;
+	if (b<a)
+	{
+		double c=a;
+		a=b;
+		b=c;
+		sign = -1;
+	}
 	double s = 0, h = (b-a) / (double)n ;
 	for (int i = 0 ; i < n-1 ; i++)
 		s += test(a + (double)i * h) + 4.0 * test(a + ((double)i + 0.5) * h) + test(a + ((double)i + 1.0) * h);
 	s += test(b - h ) + 4.0 * test(b - h / 2.0) + test(b);
-	return s * h / 6.0;
+	return s * h / 6.0 * (double)sign;
 }
 
 double GaussMethod(double a, double b, int n)                    //метод Гаусса
 {
+		int sign = 1;
+	if (b<a)
+	{
+		double c=a;
+		a=b;
+		b=c;
+		sign = -1;
+	}
 	double s = 0, h = (b-a) / (double)n ;
 	for (int i = 0 ; i < n-1 ; i++)
 		s += (test(a + ((double)i + 0.5) * h - (h / 2.) / sqrt(3)) + test(a + ((double)i + 0.5) * h + (h / 2.) / sqrt(3))) / 2.0;
 	s += (test(b - 0.5 * h - (h / 2.) / sqrt(3)) + (test(b - 0.5 * h + (h / 2.) / sqrt(3)))) / 2.0;
-	return s * h;
+	return s * h * (double)sign;
 }
 
 double MonteKarloMethod(double a, double b, int n)                    //метод Монте-Карло
 {
+		int sign = 1;
+	if (b<a)
+	{
+		double c=a;
+		a=b;
+		b=c;
+		sign = -1;
+	}
 	double min, max, f, h;
 	min = 0;                     //поиск максимума и минимума
 	max = 0;
@@ -245,6 +285,8 @@ double MonteKarloMethod(double a, double b, int n)                    //метод Мо
 		max = f;
 	if (min > f)
 		min = f;  		                      
+	//printf("max %lf  min %lf\n", max, min);
+	
 	srand(time(NULL));
 	int k = 0;
 	double x, y;
@@ -264,7 +306,7 @@ double MonteKarloMethod(double a, double b, int n)                    //метод Мо
 				k--;
 		}			
 	}	
-	return ((double)k / (double)n) * (b - a) * (max - min);
+	return ((double)k / (double)n) * (b - a) * (max - min) * (double)sign;
 }
 
 int main(void)
