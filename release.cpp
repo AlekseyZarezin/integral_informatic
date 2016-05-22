@@ -285,8 +285,6 @@ double MonteKarloMethod(double a, double b, int n)                    //метод Мо
 		max = f;
 	if (min > f)
 		min = f;  		                      
-	//printf("max %lf  min %lf\n", max, min);
-	
 	srand(time(NULL));
 	int k = 0;
 	double x, y;
