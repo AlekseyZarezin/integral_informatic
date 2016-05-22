@@ -271,6 +271,7 @@ int main(void)
 {
 	int j=0, i=0, l=CASH, n;
 	char c, *s;   
+	printf("formulation\n");
 	s = (char*)malloc(CASH*sizeof(char));                //ввод строки    
 	i=0;
 	c=getchar();
@@ -288,7 +289,7 @@ int main(void)
 	s[i]='\0';	                                           
 	int length = i;	
 	
-	stechscob st;                              //проверка на корректность
+	stechscob st;                              //проверка на корректность скобок
     st.init();
     char f=1;
 	for (int i=0; i<length; i++)
@@ -330,8 +331,19 @@ int main(void)
 		}
 		m[j]='\0';	                                           
 		L=j;
-		str=m;	
-		
+		str=m;			
+		printf("split\n");
+		int n;	
+		scanf("%d", &n);
+		printf("limits of integration\n");
+		double x, y;
+		scanf("%lf", &x);
+		scanf("%lf", &y);
+		printf("%.13lf RectangleMethod\n", RectangleMethod(x , y, n));
+		printf("%.13lf TrapezeMethod\n", TrapezeMethod(x , y, n));
+		printf("%.13lf ParabolMethod\n", ParabolMethod(x , y, n));
+		printf("%.13lf GaussMethod\n", GaussMethod(x , y, n));
+		printf("%.13lf MonteKarloMethod\n", MonteKarloMethod(x , y, n));
 		free(m);	
 	}
 
